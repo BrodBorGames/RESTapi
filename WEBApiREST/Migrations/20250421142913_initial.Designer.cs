@@ -12,7 +12,7 @@ using WEBApiREST;
 namespace WEBApiREST.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20250421032822_initial")]
+    [Migration("20250421142913_initial")]
     partial class initial
     {
         /// <inheritdoc />

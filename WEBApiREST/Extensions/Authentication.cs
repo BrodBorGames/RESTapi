@@ -53,11 +53,8 @@ namespace WEBApiREST.Extensions
                                   {
                                       options.TokenValidationParameters.ValidateLifetime = false;
                                       options.TokenValidationParameters.ValidateAudience = false;
-                                      options.TokenValidationParameters.ValidateTokenReplay = false;
-                                      options.TokenValidationParameters.ValidateSignatureLast = false;
                                       options.TokenValidationParameters.ValidateIssuerSigningKey = false;
-                                      options.TokenValidationParameters.ValidateActor = false;
-                                      options.TokenValidationParameters.ValidateIssuer = false;
+                                      options.TokenValidationParameters.ValidateIssuer = true;
                                       
 
                                       options.Authority = authority;
