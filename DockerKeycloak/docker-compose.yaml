@@ -1,0 +1,31 @@
+services:
+  postgresKeycloak:
+    container_name: keycloak_postgers
+    image: postgres:16.8
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: test
+      PGDATA: /var/lib/postgresql/data/postgres
+    volumes:
+      - ./keycloakData:/var/lib/postgresql/data/postgres
+    ports:
+      - 5434:5432
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.0
+
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgresKeycloak/test
+      KC_DB_USERNAME: admin
+      KC_DB_PASSWORD: admin
+      KC_DB_URL_PORT: 5432
+    depends_on:
+      - postgresKeycloak
+    volumes:
+      - ./config/:/opt/keycloak/data/import:ro
+    ports:
+      - 8080:8080
+    command: ["start-dev", "--import-realm"] 
